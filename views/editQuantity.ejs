@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Quantity</title>
+    <link rel="stylesheet" href="/stylecart.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Quantity for "<%= product.name %>"</h2>
+        
+        <form action="/update-quantity" method="POST">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <label for="quantity">New Quantity:</label>
+            <input type="number" name="quantity" id="quantity" value="<%= quantity %>" min="1" required>
+            <button type="submit" class="btn-custom">Update</button>
+        </form>
+        
+        <a href="/viewCart" class="btn-custom">Cancel</a>
+    </div>
+</body>
+</html>

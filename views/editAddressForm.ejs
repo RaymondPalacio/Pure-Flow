@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Address</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Edit Address</h2>
+                <form action="/edit-address" method="POST">
+                    <div class="form-group">
+                        <label for="address">New Address</label>
+                        <!-- Use user.address here -->
+                        <input type="text" class="form-control" id="address" name="address" value="<%= user.address %>" required />
+                    </div>
+                    <input type="hidden" name="userId" value="<%= user._id %>" />
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

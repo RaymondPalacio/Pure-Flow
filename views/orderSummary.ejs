@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        div {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3, h4 {
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .order-item {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h2>Order Summary</h2>
+        
+        <!-- Order Summary List -->
+        <div>
+            <% items.forEach(function(item) { %>
+                <div>
+                    <h4><%= item.name %></h4>
+                    <p>Price: ₱<%= item.price.toFixed(2) %></p>
+                    <p>Quantity: <%= item.quantity %></p>
+                    <p>Subtotal: ₱<%= (item.price * item.quantity).toFixed(2) %></p>
+                </div>
+            <% }) %>
+        </div>
+
+        <!-- Order Total -->
+        <div>
+            <p>Shipping Fee: ₱<%= shippingFee.toFixed(2) %></p>
+            <h3>Total Amount: ₱<%= totalAmount.toFixed(2) %></h3>
+        </div>
+
+        <!-- User Shipping Info -->
+        <div>
+            <h4>Shipping Information</h4>
+            <p><strong>Name:</strong> <%= userName %></p>
+            <p><strong>Email:</strong> <%= userEmail %></p>
+            <p><strong>Address:</strong> <%= userAddress %></p>
+        </div>
+
+        <!-- Form to Place Order -->
+        <form action="/place-order" method="POST">
+            <!-- Hidden fields to send user information with the form -->
+            <input type="hidden" name="userName" value="<%= userName %>">
+            <input type="hidden" name="userEmail" value="<%= userEmail %>">
+            <input type="hidden" name="userAddress" value="<%= userAddress %>">
+            
+            <!-- Submit button -->
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+
+</body>
+</html>
